@@ -10,7 +10,7 @@ type ProjectCardProps = {
   outcome: string;
   metric: string;
   demoStatus: string;
-  onSelect: () => void;
+  onSelect?: () => void;
 };
 
 export default function ProjectCard({
@@ -21,7 +21,7 @@ export default function ProjectCard({
   outcome,
   metric,
   demoStatus,
-  onSelect,
+  onSelect = () => {},
 }: ProjectCardProps) {
   return (
     <motion.article
