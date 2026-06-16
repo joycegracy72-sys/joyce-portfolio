@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Reveal from "../components/Reveal";
 import ProjectCard from "../components/ProjectCard";
 import ScrollProgress from "../components/ScrollProgress";
@@ -76,29 +79,50 @@ const PROJECTS = [
   },
 ];
 
+function CopyEmailButton() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText("joycegracy72@gmail.com");
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1800);
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="rounded-md border border-cyan-500/40 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-200 transition hover:bg-cyan-500/20"
+    >
+      {copied ? "Copied!" : "Copy email"}
+    </button>
+  );
+}
+
 export default function Home() {
   return (
     <PageTransition>
       <ScrollProgress />
 
-      <main className="min-h-screen bg-black text-white px-6 py-12 lg:px-20">
+      <main className="min-h-screen bg-slate-950 text-slate-100 px-6 py-12 lg:px-20">
         {/* HERO */}
         <section className="max-w-4xl mx-auto">
           <Reveal>
-            <div className="rounded-2xl border border-white/6 bg-white/3 p-8">
-              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
+            <div className="rounded-3xl border border-slate-800 bg-slate-900/85 p-8 shadow-xl shadow-slate-950/30">
+              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
                 Joyce Gracy
               </h1>
-              <p className="mt-2 text-lg text-slate-200">Computer Science Engineering Student</p>
-
+              <p className="mt-3 text-cyan-300 font-medium">
+                Computer Science student building production-ready web apps powered by Computer Vision and NLP.
+              </p>
               <p className="mt-4 text-slate-300 max-w-2xl">
                 Focus: AI, Data Science, Full Stack Development
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
-                <a className="rounded-md bg-cyan-600/90 px-4 py-2 text-sm font-medium text-white shadow-sm" href="mailto:joycegracy72@gmail.com">Email</a>
-                <a className="rounded-md border border-white/10 px-4 py-2 text-sm text-white/90" href="https://github.com/joycegracy72-sys" target="_blank" rel="noreferrer">GitHub</a>
-                <a className="rounded-md border border-white/10 px-4 py-2 text-sm text-white/90" href="https://www.linkedin.com/in/joycegracy" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a className="rounded-md bg-cyan-600 px-4 py-2 text-sm font-medium text-slate-950 shadow-sm shadow-cyan-500/20 transition hover:bg-cyan-500" href="mailto:joycegracy72@gmail.com">Email</a>
+                <CopyEmailButton />
+                <a className="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-100 transition hover:border-cyan-400 hover:text-cyan-300" href="https://github.com/joycegracy72-sys" target="_blank" rel="noreferrer">GitHub</a>
+                <a className="rounded-md border border-slate-700 px-4 py-2 text-sm text-slate-100 transition hover:border-cyan-400 hover:text-cyan-300" href="https://www.linkedin.com/in/joycegracy" target="_blank" rel="noreferrer">LinkedIn</a>
               </div>
             </div>
           </Reveal>
@@ -119,11 +143,13 @@ export default function Home() {
         {/* SKILLS */}
         <section className="mt-12 max-w-4xl mx-auto">
           <Reveal>
-            <div className="rounded-2xl border border-white/6 bg-white/3 p-6">
-              <h2 className="text-2xl font-semibold">Skills</h2>
+            <div className="rounded-3xl border border-slate-800 bg-slate-900/85 p-6 shadow-xl shadow-slate-950/30">
+              <h2 className="text-2xl font-semibold text-white">Skills</h2>
               <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                 {SKILLS.map((s) => (
-                  <div key={s} className="rounded-lg bg-white/6 px-3 py-2 text-sm font-medium text-slate-200">{s}</div>
+                  <div key={s} className="rounded-2xl border border-slate-800 bg-slate-950/80 px-3 py-2 text-sm font-medium text-cyan-100 shadow-sm shadow-cyan-500/10">
+                    {s}
+                  </div>
                 ))}
               </div>
             </div>
@@ -155,12 +181,15 @@ export default function Home() {
         {/* CONTACT */}
         <section className="mt-12 max-w-4xl mx-auto pb-20">
           <Reveal>
-            <div className="rounded-2xl border border-white/6 bg-white/3 p-6 text-center">
-              <h3 className="text-xl font-semibold">Contact</h3>
-              <p className="mt-3 text-slate-300">Email: <a className="text-cyan-300 underline" href="mailto:joycegracy72@gmail.com">joycegracy72@gmail.com</a></p>
-              <div className="mt-4 flex items-center justify-center gap-4">
-                <a href="https://github.com/joycegracy72-sys" target="_blank" rel="noreferrer" className="text-slate-200">GitHub</a>
-                <a href="https://www.linkedin.com/in/joycegracy" target="_blank" rel="noreferrer" className="text-slate-200">LinkedIn</a>
+            <div className="rounded-3xl border border-slate-800 bg-slate-900/85 p-6 text-center shadow-xl shadow-slate-950/30">
+              <h3 className="text-xl font-semibold text-white">Contact</h3>
+              <p className="mt-3 text-slate-300">
+                Email: <a className="text-cyan-300 underline" href="mailto:joycegracy72@gmail.com">joycegracy72@gmail.com</a>
+              </p>
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+                <CopyEmailButton />
+                <a className="text-slate-200 transition hover:text-cyan-300" href="https://github.com/joycegracy72-sys" target="_blank" rel="noreferrer">GitHub</a>
+                <a className="text-slate-200 transition hover:text-cyan-300" href="https://www.linkedin.com/in/joycegracy" target="_blank" rel="noreferrer">LinkedIn</a>
               </div>
             </div>
           </Reveal>
