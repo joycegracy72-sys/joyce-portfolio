@@ -5,8 +5,8 @@ import Reveal from "../components/Reveal";
 import ProjectCard from "../components/ProjectCard";
 import ScrollProgress from "../components/ScrollProgress";
 import PageTransition from "../components/PageTransition";
-import CursorGlow from "../components/CursorGlow"; // NEW
-import AnimatedBackground from "../components/AnimatedBackground"; // NEW
+
+import AnimatedBackground from "../components/AnimatedBackground";
 
 const PROJECTS = [
   {
