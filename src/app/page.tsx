@@ -5,6 +5,8 @@ import Reveal from "../components/Reveal";
 import ProjectCard from "../components/ProjectCard";
 import ScrollProgress from "../components/ScrollProgress";
 import PageTransition from "../components/PageTransition";
+import CursorGlow from "../components/CursorGlow"; // NEW
+import AnimatedBackground from "../components/AnimatedBackground"; // NEW
 
 const PROJECTS = [
   {
@@ -92,6 +94,8 @@ export default function Home() {
   return (
     <PageTransition>
       <ScrollProgress />
+      <AnimatedBackground /> {/* Ambient animated background */}
+      <CursorGlow /> {/* Cursor glow effect */}
 
       <main className="min-h-screen bg-[#0a0a0f] text-white px-6 lg:px-24 py-12 scroll-smooth">
 
@@ -102,15 +106,18 @@ export default function Home() {
               relative rounded-3xl border border-white/10
               bg-gradient-to-br from-white/5 to-white/[0.02]
               backdrop-blur-xl p-12 overflow-hidden
+              shadow-[0_0_40px_rgba(168,85,247,0.15)]
             ">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-cyan-500/10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-cyan-500/10 animate-pulse" />
 
               <div className="relative z-10">
-                <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+                <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight 
+                  bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 
+                  bg-clip-text text-transparent">
                   Joyce Gracy
                 </h1>
 
-                <p className="mt-3 text-lg text-white/70">
+                <p className="mt-3 text-lg text-white/80 font-light">
                   Computer Science Engineering Student
                 </p>
 
@@ -123,8 +130,8 @@ export default function Home() {
                     href="mailto:joycegracy72@gmail.com"
                     className="
                       px-5 py-2 rounded-xl text-sm font-medium
-                      bg-purple-500 text-white
-                      hover:bg-purple-400 transition
+                      bg-gradient-to-r from-purple-500 to-pink-500 text-white
+                      hover:opacity-90 transition
                     "
                   >
                     Email me
@@ -156,7 +163,7 @@ export default function Home() {
         {/* ABOUT */}
         <section className="mt-20 max-w-5xl mx-auto">
           <Reveal>
-            <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8">
+            <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 shadow-lg hover:scale-[1.01] transition">
               <h2 className="text-3xl font-semibold">About</h2>
 
               <p className="mt-4 text-white/60">
@@ -173,7 +180,21 @@ export default function Home() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {PROJECTS.map((p) => (
-                <ProjectCard key={p.title} {...p} />
+                <div
+                  key={p.title}
+                  className="
+                    group relative overflow-hidden rounded-2xl
+                    border border-white/10
+                    bg-white/5 backdrop-blur-xl
+                    p-6 transition-all duration-500
+                    hover:-translate-y-2
+                    hover:border-purple-400/40
+                    hover:shadow-[0_0_40px_rgba(168,85,247,0.15)]
+                  "
+                >
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-purple-500/10 via-transparent to-blue-500/10" />
+                  <ProjectCard {...p} />
+                </div>
               ))}
             </div>
           </Reveal>
@@ -182,7 +203,7 @@ export default function Home() {
         {/* CONTACT */}
         <section className="mt-20 max-w-4xl mx-auto pb-20">
           <Reveal>
-            <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 text-center">
+            <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 text-center shadow-lg">
               <h3 className="text-xl font-semibold">Contact</h3>
 
               <p className="mt-3 text-white/60">
