@@ -1,51 +1,44 @@
 "use client";
-
 import { motion } from "framer-motion";
 
-export default function ProjectCard({ title, description, stack, role, outcome, metric, demoStatus }) {
+interface ProjectCardProps {
+  title: string;
+  description: string;
+  stack: string[];
+}
+
+export default function ProjectCard({ title, description, stack }: ProjectCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      viewport={{ once: true }}
-      className="
-        group relative overflow-hidden rounded-2xl
-        border border-white/10
-        bg-white/5 backdrop-blur-xl
-        p-6 transition-all duration-500
-        hover:-translate-y-2
-        hover:border-purple-400/40
-        hover:shadow-[0_0_40px_rgba(168,85,247,0.15)]
-      "
+      whileHover={{ y: -5 }}
+      className="rounded-xl bg-white/10 backdrop-blur-md p-6 shadow-lg flex flex-col gap-4"
     >
-      {/* Glow overlay */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-purple-500/10 via-transparent to-blue-500/10" />
+      {/* Title */}
+      <h3 className="text-xl font-semibold">{title}</h3>
 
-      {/* Content */}
-      <div className="relative z-10">
-        <h3 className="text-xl font-semibold text-white">{title}</h3>
-        <p className="mt-2 text-sm text-white/70">{description}</p>
+      {/* Description */}
+      <p className="text-gray-300">{description}</p>
 
-        {/* Tech stack badges */}
-        <div className="mt-4 flex flex-wrap gap-2">
-          {stack.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 text-xs rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-white/80 border border-white/10"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+      {/* Tech stack tags */}
+      <div className="flex flex-wrap gap-2">
+        {stack.map((tech) => (
+          <span
+            key={tech}
+            className="px-3 py-1 text-sm rounded-full bg-primary/30 text-white/80 border border-white/10"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
 
-        {/* Footer info */}
-        <div className="mt-5 text-xs text-white/50 flex flex-col gap-1">
-          <span><strong>Role:</strong> {role}</span>
-          <span><strong>Outcome:</strong> {outcome}</span>
-          <span><strong>Metric:</strong> {metric}</span>
-          <span><strong>Status:</strong> {demoStatus}</span>
-        </div>
+      {/* Action buttons */}
+      <div className="flex gap-4 mt-4">
+        <button className="px-4 py-2 rounded-lg bg-secondary hover:scale-105 transition">
+          GitHub
+        </button>
+        <button className="px-4 py-2 rounded-lg bg-accent hover:scale-105 transition">
+          Live Demo
+        </button>
       </div>
     </motion.div>
   );
