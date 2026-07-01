@@ -15,7 +15,6 @@ export default function Navbar() {
         maxWidth: "1100px",
         margin: "0 auto",
         display: "flex",
-        justifyContent: "between",
         alignItems: "center",
         justifyContent: "space-between"
       }}>
