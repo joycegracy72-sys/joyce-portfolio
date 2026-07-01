@@ -1,45 +1,45 @@
 "use client";
-import { motion } from "framer-motion";
-import Reveal from "./Reveal";
 
-const coreSkills = [
-  "Python","C","C++","SQL","HTML","CSS","JavaScript","TypeScript","Tailwind CSS","Next.js","Git","GitHub"
-];
+export default function SkillsSection() {
+  const coreTech = ["Python", "C", "C++", "SQL", "HTML", "CSS", "JavaScript", "TypeScript", "Tailwind CSS", "Next.js", "Git", "GitHub"];
+  const interests = ["Artificial Intelligence Fundamentals", "Prompt Engineering", "Data Science", "Web Development"];
 
-const emergingSkills = [
-  "Artificial Intelligence Fundamentals","Prompt Engineering","Data Science","Web Development"
-];
-
-export default function Skills() {
   return (
-    <section id="skills" className="max-w-5xl mx-auto text-center">
-      <Reveal>
-        <motion.h2 className="text-3xl font-bold mb-10">Skills</motion.h2>
-        <h3 className="text-xl font-semibold mb-6">Core Technologies</h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-10">
-          {coreSkills.map((skill) => (
-            <motion.div
-              key={skill}
-              whileHover={{ scale: 1.05 }}
-              className="rounded-xl bg-white/10 backdrop-blur-md p-6 shadow-lg"
-            >
-              {skill}
-            </motion.div>
-          ))}
+    <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "60px 24px", textAlign: "left" }}>
+      <span style={{ color: "#3b82f6", fontWeight: 700, textTransform: "uppercase", fontSize: "12px", letterSpacing: "2px" }}>
+        The Skills
+      </span>
+      <h2 style={{ fontSize: "32px", fontWeight: 700, color: "#ffffff", marginTop: "8px", marginBottom: "40px" }}>
+        My Expanding Toolkit
+      </h2>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "48px" }}>
+        <div>
+          <h3 style={{ fontSize: "18px", color: "#d4d4d8", marginBottom: "16px", borderBottom: "1px solid #27272a", paddingBottom: "8px" }}>
+            Core Technologies
+          </h3>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+            {coreTech.map(tech => (
+              <span key={tech} style={{ padding: "6px 14px", fontSize: "14px", backgroundColor: "#18181b", color: "#d4d4d8", border: "1px solid #27272a", borderRadius: "8px" }}>
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
-        <h3 className="text-xl font-semibold mb-6">Emerging Interests</h3>
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
-          {emergingSkills.map((skill) => (
-            <motion.div
-              key={skill}
-              whileHover={{ scale: 1.05 }}
-              className="rounded-xl bg-white/10 backdrop-blur-md p-6 shadow-lg"
-            >
-              {skill}
-            </motion.div>
-          ))}
+
+        <div>
+          <h3 style={{ fontSize: "18px", color: "#d4d4d8", marginBottom: "16px", borderBottom: "1px solid #27272a", paddingBottom: "8px" }}>
+            Emerging Interests
+          </h3>
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            {interests.map(interest => (
+              <span key={interest} style={{ padding: "10px 16px", fontSize: "14px", backgroundColor: "rgba(30, 58, 138, 0.2)", color: "#60a5fa", border: "1px solid rgba(30, 58, 138, 0.4)", borderRadius: "8px" }}>
+                {interest}
+              </span>
+            ))}
+          </div>
         </div>
-      </Reveal>
-    </section>
+      </div>
+    </div>
   );
 }
