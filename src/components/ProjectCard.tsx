@@ -2,78 +2,51 @@
 
 import { motion } from "framer-motion";
 
-type ProjectCardProps = {
-  title: string;
-  description: string;
-  stack: string[];
-  role: string;
-  outcome: string;
-  metric: string;
-  demoStatus: string;
-  onSelect: () => void;
-};
-
-export default function ProjectCard({
-  title,
-  description,
-  stack,
-  role,
-  outcome,
-  metric,
-  demoStatus,
-  onSelect,
-}: ProjectCardProps) {
+export default function ProjectCard({ title, description, stack, role, outcome, metric, demoStatus }) {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
-      onClick={onSelect}
-      className="group relative cursor-pointer overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 p-6 shadow-2xl shadow-slate-950/10 backdrop-blur-xl transition duration-300 hover:border-cyan-300/30 hover:bg-white/15"
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="
+        group relative overflow-hidden rounded-2xl
+        border border-white/10
+        bg-white/5 backdrop-blur-xl
+        p-6 transition-all duration-500
+        hover:-translate-y-2
+        hover:border-purple-400/40
+        hover:shadow-[0_0_40px_rgba(168,85,247,0.15)]
+      "
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-pink-500/10 opacity-80 pointer-events-none" />
-      <div className="relative">
-        <div className="flex items-center justify-between gap-4">
-          <span className="rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-[0.35em] text-cyan-100">Project</span>
-          <span className="rounded-full bg-slate-900/90 px-3 py-1 text-[11px] font-semibold text-white">{metric}</span>
-        </div>
+      {/* Glow overlay */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-purple-500/10 via-transparent to-blue-500/10" />
 
-        <h3 className="mt-5 text-2xl font-semibold text-white">{title}</h3>
-        <p className="mt-4 text-sm leading-7 text-slate-300">{description}</p>
+      {/* Content */}
+      <div className="relative z-10">
+        <h3 className="text-xl font-semibold text-white">{title}</h3>
+        <p className="mt-2 text-sm text-white/70">{description}</p>
 
-        <div className="mt-5 grid gap-3 sm:grid-cols-2">
-          <div className="rounded-2xl bg-white/10 px-3 py-3 text-[11px] uppercase tracking-[0.28em] text-slate-200">
-            Role: <span className="font-semibold text-white">{role}</span>
-          </div>
-          <div className="rounded-2xl bg-white/10 px-3 py-3 text-[11px] uppercase tracking-[0.28em] text-slate-200">
-            Outcome: <span className="font-semibold text-white">{outcome}</span>
-          </div>
-        </div>
-
-        <div className="mt-5 flex flex-wrap gap-2">
-          {stack.map((tag) => (
+        {/* Tech stack badges */}
+        <div className="mt-4 flex flex-wrap gap-2">
+          {stack.map((tech) => (
             <span
-              key={tag}
-              className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-200"
+              key={tech}
+              className="px-3 py-1 text-xs rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-white/80 border border-white/10"
             >
-              {tag}
+              {tech}
             </span>
           ))}
         </div>
 
-        <div className="mt-6 rounded-3xl border border-white/10 bg-slate-950/80 px-4 py-4 text-sm text-slate-300">
-          {demoStatus}
-        </div>
-
-        <div className="mt-6 flex items-center justify-between gap-4">
-          <span className="text-xs uppercase tracking-[0.35em] text-slate-400">Click for details</span>
-          <span className="inline-flex items-center rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-cyan-500/20 transition duration-300 group-hover:scale-105">
-            View details
-          </span>
+        {/* Footer info */}
+        <div className="mt-5 text-xs text-white/50 flex flex-col gap-1">
+          <span><strong>Role:</strong> {role}</span>
+          <span><strong>Outcome:</strong> {outcome}</span>
+          <span><strong>Metric:</strong> {metric}</span>
+          <span><strong>Status:</strong> {demoStatus}</span>
         </div>
       </div>
-    </motion.article>
+    </motion.div>
   );
 }
